@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Counter : MonoBehaviour
+public class CounterView : MonoBehaviour
 {
     [SerializeField] private TextMeshPro _text;
     [SerializeField] private float _delay = 0.5f;
@@ -15,24 +15,21 @@ public class Counter : MonoBehaviour
     private int _count;
     private bool _isWork;
 
+    public void Switch()
+    {
+        _isWork = !_isWork;
+
+        if (_isWork)
+            _coroutine = StartCoroutine(ValueIncreasing());
+        else
+            StopCoroutine(_coroutine);
+    }
+
     private void Start()
     {
         _text.text = "";
         _count = 0;
         _isWork = false;
-    }
-
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            _isWork = !_isWork;
-
-            if (_isWork)
-                _coroutine = StartCoroutine(ValueIncreasing());
-            else
-                StopCoroutine(_coroutine);
-        }
     }
 
     private IEnumerator ValueIncreasing()
