@@ -11,6 +11,16 @@ public class CounterView : MonoBehaviour
     [SerializeField] private TextMeshPro _text;
     [SerializeField] private Counter _counter;
 
+    private void OnEnable()
+    {
+        _counter.ValueIncreased += DisplayCounter;
+    }
+
+    private void OnDisable()
+    {
+        _counter.ValueIncreased -= DisplayCounter;
+    }
+
     private void Start()
     {
         _text.text = "";

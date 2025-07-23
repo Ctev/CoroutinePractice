@@ -2,31 +2,31 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class Counter : MonoBehaviour
 {
-    [SerializeField] private CounterView _counterView;
+    [SerializeField] private InputReader _inputReader;
     [SerializeField] private float _delay = 0.5f;
 
     private Coroutine _coroutine;
-    private int _count;
-    private event Action _isValueIncreased;
 
-    public int Count => _count;
+    public int Count { get; private set; }
+    public event Action ValueIncreased;
 
     private void OnEnable()
     {
-        _isValueIncreased += _counterView.DisplayCounter;
+        _inputReader.Switched += Switch;
     }
 
     private void OnDisable()
     {
-        _isValueIncreased -= _counterView.DisplayCounter;
+        _inputReader.Switched -= Switch;
     }
 
     private void Start()
     {
-        _count = 0;
+        Count = 0;
     }
 
     public void Switch()
@@ -49,8 +49,8 @@ public class Counter : MonoBehaviour
 
         while (isWork)
         {
-            _count++;
-            _isValueIncreased.Invoke();
+            Count++;
+            ValueIncreased.Invoke();
 
             yield return wait;
         }

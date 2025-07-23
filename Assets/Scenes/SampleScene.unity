@@ -415,7 +415,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b03b567ccaf822418f9e48856113be3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _counter: {fileID: 737460173}
 --- !u!114 &737460173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,7 +427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c93e1d9de53a04ea5c196263bcf073, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _counterView: {fileID: 737460171}
+  _inputReader: {fileID: 737460172}
   _delay: 0.5
 --- !u!1 &1937684219
 GameObject:
